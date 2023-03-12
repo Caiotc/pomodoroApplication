@@ -1,20 +1,17 @@
-import { Fragment, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { Button } from './components/Button'
 import { GlobalStyle } from './styles/global'
-import { defaultTheme } from './styles/themes/default' 
+import { defaultTheme } from './styles/themes/default'
 
 export function App() {
-  const [count, setCount] = useState(0)
-
   return (
-   <ThemeProvider theme={defaultTheme}>
-    <Button variant='primary'/>
-    <Button variant='danger'/>
-    <Button variant='secondary'/>
-    <Button variant='success'/>
-    <Button/>
-    <GlobalStyle/>
-   </ThemeProvider>
+    <ThemeProvider theme={defaultTheme}>
+      <Button />
+      <Button />
+      <Button />
+      <Button />
+      <Button />
+      <GlobalStyle />
+    </ThemeProvider>
   )
 }
