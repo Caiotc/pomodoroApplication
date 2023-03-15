@@ -11,15 +11,23 @@ import {
   TaskInput,
 } from './styles'
 import { useForm } from 'react-hook-form'
+
 const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, 'Informe a tarefa'),
   minutesAmount: zod.number().min(5).max(60),
 })
+
+type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
+
 // controlled(stages at real time the inputed info) vs uncontrolled components
 export function Home() {
   // controlled example
-  const { register, handleSubmit, watch } = useForm({
+  const { register, handleSubmit, watch } = useForm<NewCycleFormData>({
     resolver: zodResolver(newCycleFormValidationSchema),
+    defaultValues: {
+      task: '',
+      minutesAmount: 0,
+    },
   })
 
   function handleCreateNewCycle(data: any) {
