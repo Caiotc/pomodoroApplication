@@ -22,7 +22,7 @@ type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
 // controlled(stages at real time the inputed info) vs uncontrolled components
 export function Home() {
   // controlled example
-  const { register, handleSubmit, watch } = useForm<NewCycleFormData>({
+  const { register, handleSubmit, watch, reset } = useForm<NewCycleFormData>({
     resolver: zodResolver(newCycleFormValidationSchema),
     defaultValues: {
       task: '',
@@ -30,8 +30,9 @@ export function Home() {
     },
   })
 
-  function handleCreateNewCycle(data: any) {
+  function handleCreateNewCycle(data: NewCycleFormData) {
     console.log(data)
+    reset()
   }
   const task = watch('task')
   const isSubmitDisabled = !task
